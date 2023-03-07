@@ -23,9 +23,11 @@ try {
         username VARCHAR(25) PRIMARY KEY,
         userPassword VARCHAR(25)
         )";
+    $conn->exec($Tabsql);
 
     $valsql = "INSERT INTO userlogin (username, userPassword)
-    VALUES ('admin', 'admin') WHERE NOT EXISTS (Select username From userlogin WHERE username='admin')";
+    VALUES ('admin', 'admin') WHERE NOT EXISTS (Select username FROM userlogin WHERE username='admin')";
+    $conn->exec($valsql);
 
     $stmt = $conn->query("SELECT username, userPassword FROM userlogin");
     while ($row = $stmt->fetch(PDO::FETCH_NUM)) {

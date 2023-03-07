@@ -41,25 +41,37 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="form.css">
     <title>Post Form</title>
 </head>
+
 <body>
-    <div><h2>User Input</h2></div>
-    <form action="" method="post">
-        <label for="id">ID</label>
-        <input type="number" name="id" id="id" placeholder="Enter your employee ID"><br>
+    <div class="form">
+        <div class="title">Sigma InfoSolution LTD</div>
+        <div class="subtitle">Employee Review Form</div>
+        <div class="input-container ic1">
+            <form action="" method="post">
+                <input type="number" name="id" id="id" placeholder="Enter your employee ID" />
+                <div class="cut"></div>
+        </div>
+        <div class="input-container ic1">
+            <input type="text" name="name" id="name" placeholder="Enter your Name">
+            <div class="cut"></div>
+        </div>
+        <div class="input-container ic2">
+            <textarea name="desc" id="desc" cols="25" rows="5">Comment</textarea>
+            <div class="cut cut-short"></div>
+        </div>
+        <button type="submit" name="submit" value="submit" class="submit">Submit</button>
+        </form>
+    </div>
 
-        <label for="name">Name</label>
-        <input type="text" name="name" id="name" placeholder="Enter your Name"><br>
-
-        <label for="desc">Comment</label>
-        <textarea name="desc" id="desc" cols="30" rows="10"></textarea><br><br>
-
-        <input type="submit" name="submit" value="submit">
-    </form>
 </body>
+
 </html>

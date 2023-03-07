@@ -9,11 +9,13 @@ session_start();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+
     <title>Login Form</title>
 </head>
 
 <body>
-<?php
+    <?php
 $nameErr = $passErr;
 $client_name = $client_password;
 $flag1 = false;
@@ -64,18 +66,25 @@ function test_input($data)
     return $data;
 }
 ?>
-    <div><h2>Login Form</h2></div>
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-        <label for="username">Username</label>
-        <input type="text" id="username" name="name" value="" placeholder="admin">
-        <span class="error">* <?php echo $nameErr; ?></span>
-        <br><br>
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" value="" placeholder="admin">
-        <span class="error">* <?php echo $passErr; ?></span>
-        <br><br>
-        <button type="submit" value="submit">Submit</button>
-    </form>
+    <div class="login-page">
+        <div class="form">
+            <div class="login">
+                <div class="login-header">
+                    <h3>LOGIN</h3>
+                    <p>Please enter your credentials to login.</p>
+                </div>
+            </div>
+            <form class="login-form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                <span class="error">* <?php echo $nameErr; ?></span>
+                <input type="text" id="username" name="name" value="" placeholder="admin">
+
+                <span class="error">* <?php echo $passErr; ?></span>
+                <input type="password" id="password" name="password" value="" placeholder="admin">
+
+                <button type="submit" value="submit">Submit</button>
+            </form>
+        </div>
+    </div>
 </body>
 
 </html>
