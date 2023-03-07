@@ -35,20 +35,38 @@ if (isset($_GET['id'])) {
     }
 }
 ?>
+<!DOCTYPE html>
+<html lang="en">
 
-<h2>User Update Form</h2>
-<form action="" method="post">
-    <label for="id">ID</label>
-    <input type="number" name="id" id="id" placeholder="Enter your employee ID" value="<?php echo $fetch_id; ?>"><br>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <label for="name">Name</label>
-    <input type="text" name="name" id="name" placeholder="Enter your Name" value="<?php echo $fetch_tit; ?>"><br>
+    <link rel="stylesheet" href="form.css">
+    <title>Post Form</title>
+</head>
 
-    <label for="desc">Comment</label>
-    <textarea name="desc" id="desc" cols="30" rows="10"><?php echo $fetch_desc; ?></textarea><br><br>
-
-    <input type="submit" value="Update" name="Update">
-</form>
+<body>
+    <div class="form">
+        <div class="title">Sigma InfoSolution LTD</div>
+        <div class="subtitle">Employee Review Form</div>
+        <div class="input-container ic1">
+            <form action="" method="post">
+                <input type="number" name="id" id="id" value="<?php echo $fetch_id; ?>" placeholder="Enter your employee ID" />
+                <div class="cut"></div>
+        </div>
+        <div class="input-container ic1">
+            <input type="text" name="name" id="name" value="<?php echo $fetch_tit; ?>" placeholder="Enter your Name">
+            <div class="cut"></div>
+        </div>
+        <div class="input-container ic2">
+            <textarea name="desc" id="desc" cols="25" rows="5"><?php echo $fetch_desc; ?></textarea>
+            <div class="cut cut-short"></div>
+        </div>
+        <button type="submit" name="Update" value="Update" class="submit">Submit</button>
+        </form>
+    </div>
 
 </body>
 

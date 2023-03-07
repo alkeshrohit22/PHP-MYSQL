@@ -65,7 +65,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <div class="cut"></div>
         </div>
         <div class="input-container ic2">
-            <textarea name="desc" id="desc" cols="25" rows="5">Comment</textarea>
+            <textarea name="desc" id="desc" cols="25" rows="5" placeholder="comment"></textarea>
             <div class="cut cut-short"></div>
         </div>
         <button type="submit" name="submit" value="submit" class="submit">Submit</button>

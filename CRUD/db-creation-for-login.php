@@ -25,8 +25,8 @@ try {
         )";
     $conn->exec($Tabsql);
 
-    $valsql = "INSERT INTO userlogin (username, userPassword)
-    VALUES ('admin', 'admin') WHERE NOT EXISTS (Select username FROM userlogin WHERE username='admin')";
+    $valsql = "INSERT IGNORE INTO userlogin (username, userPassword)
+    VALUES ('admin', 'admin')";
     $conn->exec($valsql);
 
     $stmt = $conn->query("SELECT username, userPassword FROM userlogin");
