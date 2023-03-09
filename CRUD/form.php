@@ -1,11 +1,14 @@
 <?php
-include("db-connection.php");
+include "db-connection.php";
 //table creation and insert data into table
 
-$ID = $PostTitle = $PostDescription;
+$flag = '';
+$IdError = $PostTittleError = $PostDescriptionError = '';
 
-if($_SERVER["REQUEST_METHOD"] == "POST"){
-    
+$ID = $PostTitle = $PostDescription = '';
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
     //get data from user input
     $ID = $_POST['id'];
     $PostTitle = $_POST['name'];
@@ -18,24 +21,24 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             ID INT(6) PRIMARY KEY,
             PostTitle VARCHAR(30) NOT NULL,
             PostDescription VARCHAR(200) NOT NULL
-        )";
+            )";
 
         //insert post data into table
         $tableValue = "INSERT INTO User_Input (ID, PostTitle, PostDescription)
-        VALUES ($ID, '$PostTitle', '$PostDescription')";
-
+            VALUES ($ID, '$PostTitle', '$PostDescription')";
         $conn->exec($tableSql);
-        if($conn->exec($tableValue) == true){
+
+        if ($conn->exec($tableValue) == true) {
             header('Location: view.php');
         } else {
             echo "Data not insert into table!!!";
         }
         $conn->exec($tableValue);
-        
 
-    } catch(PDOException $e) {
-        echo $sql . "<br>" . $e->getMessage();
+    } catch (PDOException $e) {
+        echo 'Error ' . $e->getMessage();
     }
+
 }
 
 ?>
@@ -57,15 +60,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <div class="subtitle">Employee Review Form</div>
         <div class="input-container ic1">
             <form action="" method="post">
-                <input type="number" name="id" id="id" placeholder="Enter your employee ID" />
+                <input type="number" name="id" id="id" placeholder="Enter your employee ID" required />
                 <div class="cut"></div>
         </div>
         <div class="input-container ic1">
-            <input type="text" name="name" id="name" placeholder="Enter your Name">
+            <input type="text" name="name" id="name" placeholder="Enter your Name" required>
             <div class="cut"></div>
         </div>
         <div class="input-container ic2">
-            <textarea name="desc" id="desc" cols="25" rows="5" placeholder="comment"></textarea>
+            <textarea name="desc" id="desc" cols="25" rows="5" placeholder="comment" required></textarea>
             <div class="cut cut-short"></div>
         </div>
         <button type="submit" name="submit" value="submit" class="submit">Submit</button>

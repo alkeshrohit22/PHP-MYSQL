@@ -2,7 +2,7 @@
 include "db-connection.php";
 
 if (isset($_POST['Update'])) {
-    
+
     $upd_id = $_POST['id'];
     $id = (int)$upd_id;
     var_dump($upd_id);

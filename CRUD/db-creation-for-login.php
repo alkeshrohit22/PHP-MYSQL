@@ -40,7 +40,7 @@ try {
     $conn = null;
 
 } catch (PDOException $e) {
-    echo $e->getMessage();
+    echo 'Error '. $e->getMessage();
 }
 
 ?>
