@@ -1,6 +1,5 @@
 <?php 
 include_once 'db-creation-for-login.php';
-session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
