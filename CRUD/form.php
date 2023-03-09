@@ -18,9 +18,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         //create table query
         $tableSql = "CREATE TABLE IF NOT EXISTS User_Input (
-            ID INT(6) PRIMARY KEY,
-            PostTitle VARCHAR(30) NOT NULL,
-            PostDescription VARCHAR(200) NOT NULL
+            ID INT(20) PRIMARY KEY,
+            PostTitle VARCHAR(500) NOT NULL,
+            PostDescription VARCHAR(10000) NOT NULL
             )";
 
         //insert post data into table
