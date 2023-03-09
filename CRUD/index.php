@@ -16,8 +16,8 @@ session_start();
 
 <body>
     <?php
-$nameErr = $passErr;
-$client_name = $client_password;
+$nameErr = $passErr = '';
+$client_name = $client_password = '';
 $flag1 = false;
 $flag2 = false;
 
