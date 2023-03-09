@@ -28,29 +28,43 @@ include 'db-connection.php';
             </thead>
             <tbody>
             <?php
-                $stmt = $conn->query("SELECT * FROM User_Input");
-                while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-            ?>
+$stmt = $conn->query("SELECT * FROM User_Input");
+while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+    ?>
                 <tr>
                     <td><?php echo $row[0]; ?></td>
                     <td><?php echo $row[1]; ?></td>
                     <td><?php echo $row[2]; ?></td>
-                    <td><a class="btn btn-info" href="update.php?id=<?php echo $row[0]; ?>">Edit</a>&nbsp;<a
-                            class="btn btn-danger" href="delete.php?id=<?php echo $row[0]; ?>">Delete</a></td>
+                    <td><a class="btn btn-info" id="update" onclick="moveToUpdate(<?php echo $row[0] ?>)">Edit</a>&nbsp;<a
+                            class="btn btn-danger" id="delete" onclick="moveToDelete(<?php echo $row[0] ?>)" >Delete</a></td>
 
                 </tr>
             <?php
-                }
-            ?>
+}
+?>
             </tbody>
 
         </table>
 
     </div>
 
-</body>
+    <script>
 
+        function moveToDelete(id){
+            if(confirm("Sure You Want to delete?")){
+                console.log(id);
+                window.location.href = "delete.php?id="+id;
+            }
+        }
 
+        function moveToUpdate(value){
+            if(confirm("Sure You Want to Update?")){
+                console.log(value);
+                window.location.href = "update.php?id="+value;
+            }
+        }
+
+    </script>
 </body>
 
 </html>
