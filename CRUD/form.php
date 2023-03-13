@@ -2,7 +2,8 @@
 include "db-connection.php";
 //table creation and insert data into table
 
-$flag = '';
+$PrimaryFlag = true;
+
 $IdError = $PostTittleError = $PostDescriptionError = '';
 
 $ID = $PostTitle = $PostDescription = '';
@@ -22,18 +23,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             PostTitle VARCHAR(500) NOT NULL,
             PostDescription VARCHAR(10000) NOT NULL
             )";
-
-        //insert post data into table
-        $tableValue = "INSERT INTO User_Input (ID, PostTitle, PostDescription)
-            VALUES ($ID, '$PostTitle', '$PostDescription')";
         $conn->exec($tableSql);
 
+        $dbid = $conn->query('SELECT ID FROM User_Input')->fetchAll(PDO::FETCH_COLUMN);
+        foreach ($dbid as $v) {
+            if ($v == $ID) {
+                http_response_code(409); // Conflict
+                echo json_encode(array("message" => "Duplicate primary key value."));
+                exit;
+            }
+        }
+
+        // insert post data into table
+        $tableValue = "INSERT INTO User_Input (ID, PostTitle, PostDescription)
+            VALUES ($ID, '$PostTitle', '$PostDescription')";
+
         if ($conn->exec($tableValue) == true) {
-            header('Location: view.php');
+            echo json_encode(array("success"=>true,"message" => "saved sucssesfully."));
+            exit;
         } else {
             echo "Data not insert into table!!!";
         }
-        $conn->exec($tableValue);
 
     } catch (PDOException $e) {
         echo 'Error ' . $e->getMessage();
@@ -51,6 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="form.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <title>Post Form</title>
 </head>
 
@@ -59,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="title">Sigma InfoSolution LTD</div>
         <div class="subtitle">Employee Review Form</div>
         <div class="input-container ic1">
-            <form action="" method="post">
+            <form action="" method="post" id="frm">
                 <input type="number" name="id" id="id" placeholder="Enter your employee ID" required />
                 <div class="cut"></div>
         </div>
@@ -75,6 +86,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </form>
     </div>
 
+    <script>
+    $(document).ready(function() {
+        $("#frm").on("submit", function(event) {
+            event.preventDefault();
+            $.ajax({
+                url: "form.php",
+                type: "POST",
+                data: {
+                    id: $('#id').val(),
+                    name: $('#name').val(),
+                    desc: $('#desc').val()
+                },
+                dataType: 'json',
+                success: function(response) {
+                    // Handle successful submission
+                    if(response.success == true){
+                        window.location.href = "view.php";
+                    }
+                    alert(response.message);
+                },
+                statusCode: {
+                    409: function(response) {
+                        // Handle primary key violation
+                        alert(response.responseJSON.message);
+                    }
+                }
+            });
+        });
+    });
+    </script>
 </body>
 
 </html>
