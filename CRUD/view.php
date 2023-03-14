@@ -17,7 +17,7 @@ include 'db-connection.php';
 <body style="background-image: linear-gradient(45deg,#328f8a,#08ac4b);">
     <div class="container">
         <h1 style="color:black; font-size:100px;">Main View Page</h1>
-        <h2>User Input<a class="btn btn-success" style="margin-left:735px" href="form.php">ADD Value</a></h2>
+        <h2>User Input<a class="btn btn-success" style="margin-left:735px" href="form.html">ADD Value</a></h2>
         <table class="table">
             <thead>
                 <tr>

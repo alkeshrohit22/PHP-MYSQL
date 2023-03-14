@@ -34,6 +34,7 @@ if (isset($_GET['id'])) {
         $fetch_desc = $row[2];
     }
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -52,7 +53,7 @@ if (isset($_GET['id'])) {
         <div class="title">Sigma InfoSolution LTD</div>
         <div class="subtitle">Employee Review Form</div>
         <div class="input-container ic1">
-            <form action="" method="post">
+            <form action="update.php" method="post">
                 <input type="number" name="id" id="id" value="<?php echo $fetch_id; ?>" placeholder="Enter your employee ID" />
                 <div class="cut"></div>
         </div>

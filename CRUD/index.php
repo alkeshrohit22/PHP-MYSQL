@@ -14,7 +14,7 @@ include_once 'db-creation-for-login.php';
 </head>
 
 <body>
-    <?php
+<?php
 $nameErr = $passErr = '';
 $client_name = $client_password = '';
 $flag1 = false;
@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if($flag1 == true && $flag2 == true){
         echo "called ";
-        header('Location: form.php');
+        header('Location: form.html');
     }
 }
 
